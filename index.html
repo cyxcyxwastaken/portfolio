@@ -22,6 +22,8 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
   padding:calc(env(safe-area-inset-top,0px) + 1rem) 1.25rem calc(env(safe-area-inset-bottom,0px) + .75rem)}
 /* HUD */
 .hud{display:flex;flex-wrap:wrap;gap:.75rem 2rem;justify-content:space-between;align-items:center;padding:.8rem 1rem}
+.hud .settings{margin-left:auto}
+.hud .settings .btn{padding:.45rem .65rem;font-size:.52rem}
 h1{font-family:var(--px);font-weight:400;font-size:clamp(.8rem,2.6vw,1.2rem);line-height:1.5;margin:.3rem 0;color:var(--ink)}
 .sub{margin:0;color:var(--muted);max-width:34rem}
 .st{min-width:12rem}
@@ -97,7 +99,7 @@ h1{font-family:var(--px);font-weight:400;font-size:clamp(.8rem,2.6vw,1.2rem);lin
 .ap .on{margin-left:auto;color:var(--muted)}
 /* appearance picker */
 .settings{position:relative}
-.appearance-panel{position:absolute;right:4px;bottom:calc(100% + 14px);z-index:60;width:min(21rem,calc(100vw - 2.5rem));padding:1rem}
+.appearance-panel{position:absolute;right:0;top:calc(100% + 10px);z-index:60;width:min(21rem,calc(100vw - 2.5rem));padding:1rem}
 .appearance-panel[hidden]{display:none}
 .appearance-panel h2{font-family:var(--px);font-weight:400;font-size:.62rem;color:var(--gold);margin:0 0 .3rem}
 .appearance-panel p{margin:0 0 .6rem;color:var(--muted);font-size:1.1rem}
@@ -108,11 +110,16 @@ h1{font-family:var(--px);font-weight:400;font-size:clamp(.8rem,2.6vw,1.2rem);lin
 /* refined editorial appearance */
 html.elegant{--bg:#F5F2EC;--panel:#FFFEFB;--ink:#292824;--muted:#77736B;--pink:#A76D62;--lilac:#738477;--gold:#9A7950;--px:'Lexend',Arial,sans-serif;--vt:'Lexend',Arial,sans-serif}
 html.elegant body{font-size:1rem;line-height:1.55;background-image:radial-gradient(50rem 35rem at 100% 0%,rgba(167,109,98,.09),transparent 72%);}
+html.elegant .page{gap:1.35rem;padding:calc(env(safe-area-inset-top,0px) + 1.5rem) 1.5rem calc(env(safe-area-inset-bottom,0px) + 1.5rem)}
+html.elegant .main{flex:1 0 auto;min-height:24rem}
+html.elegant .foot{flex:0 0 auto;margin-top:.35rem;padding-top:1rem;border-top:1px solid rgba(90,78,61,.15);gap:1rem 1.5rem}
+html.elegant .hud .lab:first-child,html.elegant .contact-card>.lab{display:none}
 html.elegant body::after{display:none}
 html.elegant .px{margin:0;box-shadow:0 10px 35px rgba(54,46,35,.07);border:1px solid rgba(90,78,61,.12);border-radius:14px}
 html.elegant .lab,html.elegant .q h2,html.elegant .t,html.elegant .btn,html.elegant .ap h2,html.elegant .appearance-panel h2{font-family:var(--px);font-size:.67rem;letter-spacing:.12em;text-transform:uppercase}
 html.elegant h1{font-family:var(--px);font-size:clamp(1.2rem,3vw,1.8rem);line-height:1.25;letter-spacing:-.04em}
 html.elegant .hud{padding:1.2rem 1.4rem}
+html.elegant .hud .settings .btn{padding:.55rem .75rem;font-size:.58rem}
 html.elegant .main{gap:1.5rem}
 html.elegant .q{padding:1.2rem 1.4rem}
 html.elegant .q h2{color:var(--gold)}
@@ -132,6 +139,9 @@ html.elegant .txt{font-size:1rem;line-height:1.5}
 html.elegant .txt::after{content:""}
 html.elegant .btn{color:white;background:var(--ink);border-radius:7px;padding:.8rem 1rem;box-shadow:none;transition:background .2s,transform .2s}
 html.elegant .btn:hover{transform:translateY(-2px);background:var(--pink);box-shadow:none}
+html.elegant.fine .cur svg{display:none}
+html.elegant.fine .cur::after{content:"";display:block;width:10px;height:10px;border:1px solid var(--pink);border-radius:50%;background:rgba(167,109,98,.12);transform:translate(-50%,-50%);transition:width .18s,height .18s,background .18s}
+html.elegant.fine .cur.big::after{width:18px;height:18px;background:rgba(167,109,98,.2)}
 html.elegant .ctl button{font-size:.85rem}
 html.elegant .ap,.elegant .appearance-panel{border-radius:12px}
 html.elegant .ap button,html.elegant .appearance-panel button{border-top:1px solid rgba(90,78,61,.15)}
@@ -155,9 +165,40 @@ html.hc{--bg:#000;--panel:#000;--muted:#fff;--ink:#fff}
 html.hc body::after,html.hc .dust{display:none}
 html.hc .field{background:none}
 html.hc .px{box-shadow:-4px 0 0 0 #fff,4px 0 0 0 #fff,0 -4px 0 0 #fff,0 4px 0 0 #fff}
+html.hc .btn{color:#000;background:#fff;border:1px solid #fff;box-shadow:none}
+html.hc .btn:hover{color:#fff;background:#000;box-shadow:none}
 html.big{font-size:125%}
 html.calm *,html.calm *::before,html.calm *::after{animation:none!important;transition:none!important}
 @media (max-width:760px){.main{grid-template-columns:1fr}.q{align-self:stretch}.qi small{font-size:1rem}}
+@media (max-height:760px){
+  .page{gap:.55rem;padding:calc(env(safe-area-inset-top,0px) + .6rem) .9rem calc(env(safe-area-inset-bottom,0px) + .6rem)}
+  .hud{padding:.55rem .8rem;gap:.5rem 1rem}
+  .main{gap:.7rem}
+  .sky{min-height:11rem}
+  .q{padding:.65rem .8rem}
+  .qi{padding:.25rem 0}
+  .qi small,.note{font-size:.9rem;line-height:1.3}
+  .foot{gap:.4rem .8rem}
+  .btn{padding:.55rem .75rem}
+  html.elegant .page{gap:.65rem;padding:calc(env(safe-area-inset-top,0px) + .7rem) .9rem calc(env(safe-area-inset-bottom,0px) + .7rem)}
+  html.elegant .main{min-height:19rem;gap:.8rem}
+  html.elegant .foot{margin-top:0;padding-top:.55rem;gap:.4rem .8rem}
+  html.elegant .hud{padding:.65rem .85rem}
+  html.elegant .q{padding:.75rem .85rem}
+}
+@media (max-height:620px){
+  .page{gap:.35rem;padding-top:calc(env(safe-area-inset-top,0px) + .35rem);padding-bottom:calc(env(safe-area-inset-bottom,0px) + .35rem)}
+  .hud{padding:.35rem .65rem}
+  .sky{min-height:9rem}
+  .q{padding:.45rem .65rem}
+  .qi small,.note{font-size:.82rem;line-height:1.2}
+  .q h2{margin-bottom:.3rem}
+  .q h2.d{margin-top:.5rem}
+  html.elegant .page{gap:.4rem;padding-top:calc(env(safe-area-inset-top,0px) + .4rem);padding-bottom:calc(env(safe-area-inset-bottom,0px) + .4rem)}
+  html.elegant .main{min-height:16rem;gap:.5rem}
+  html.elegant .q{padding:.55rem .65rem}
+  html.elegant .foot{padding-top:.35rem}
+}
 /* achievement toast */
 .toast{position:fixed;right:1rem;top:calc(env(safe-area-inset-top,0px) + 1rem);z-index:260;padding:.8rem 1rem;max-width:18rem;transform:translateX(130%);transition:transform .5s steps(6)}
 .toast.show{transform:none}
@@ -202,20 +243,29 @@ html.calm *,html.calm *::before,html.calm *::after{animation:none!important;tran
       <p class="sub">Cs, math and econ student at the University of Toronto. Art enthusiast.</p>
     </div>
     <div class="st"><div class="lab">stars <span id="cnt">0</span>/8</div><div class="xp" id="xp"></div></div>
+    <div class="settings">
+      <button type="button" class="btn" id="appearanceBtn" aria-expanded="false" aria-controls="appearancePanel">appearance</button>
+      <div class="appearance-panel px" id="appearancePanel" role="radiogroup" aria-label="Choose site appearance" hidden>
+        <h2>appearance</h2>
+        <p>choose how this portfolio looks. your choice is saved on this device.</p>
+        <button type="button" role="radio" aria-checked="true" data-appearance="arcade"><span class="swatch"></span>pixel arcade<span class="on">selected</span></button>
+        <button type="button" role="radio" aria-checked="false" data-appearance="elegant"><span class="swatch"></span>quiet editorial<span class="on"></span></button>
+      </div>
+    </div>
   </header>
 
   <div class="main">
     <aside class="q px" aria-label="What I am working on right now">
-      <h2>active quests</h2>
+      <h2>current roles</h2>
       <div class="qi"><b>Marketing associate &amp; content creator</b><small>Fable Social, a campus events and student clubs platform. Since Sep 2026.</small></div>
       <div class="qi"><b>Computer science specialist, Math and Economics minor </b><small>University of Toronto. Expected graduation: May 2029.</small></div>
-      <h2 class="d">on the side</h2>
+      <h2 class="d">beyond the classroom</h2>
       <div class="qi"><b>art &amp; 3d modeling</b><small>i enjoy making things in 3d. <a href="https://sketchfab.com/aka.ycz" target="_blank" rel="noopener noreferrer">see my sketchfab work</a>.</small></div>
-      <p class="note">stars marked <span>!</span> are my active quests.</p>
+      <p class="note">Stars marked <span>!</span> highlight my current roles.</p>
     </aside>
 
     <main class="sky" id="sky" aria-label="Constellation about me">
-      <h2 class="t" id="st">get to know me more!</h2>
+      <h2 class="t" id="st">a bit more about me</h2>
       <div class="ctl"><button type="button" data-clear hidden>reset</button></div>
       <div class="field">
         <div class="far" id="far" aria-hidden="true"></div>
@@ -253,16 +303,7 @@ html.calm *,html.calm *::before,html.calm *::after{animation:none!important;tran
   </div>
 
   <footer class="foot">
-    <button type="button" class="btn" id="reachOutBtn" aria-controls="contactPage">reach out!</button>
-    <div class="settings">
-      <button type="button" class="btn" id="appearanceBtn" aria-expanded="false" aria-controls="appearancePanel">appearance</button>
-      <div class="appearance-panel px" id="appearancePanel" role="radiogroup" aria-label="Choose site appearance" hidden>
-        <h2>appearance</h2>
-        <p>choose how this portfolio looks. your choice is saved on this device.</p>
-        <button type="button" role="radio" aria-checked="true" data-appearance="arcade"><span class="swatch"></span>pixel arcade<span class="on">selected</span></button>
-        <button type="button" role="radio" aria-checked="false" data-appearance="elegant"><span class="swatch"></span>quiet editorial<span class="on"></span></button>
-      </div>
-    </div>
+    <button type="button" class="btn" id="reachOutBtn" aria-controls="contactPage">Get in touch</button>
     <div class="a11y">
       <button type="button" class="btn" id="a11yBtn" aria-expanded="false" aria-controls="a11yPanel">accessibility</button>
       <div class="ap px" id="a11yPanel" role="group" aria-label="Accessibility settings" hidden>
@@ -281,14 +322,14 @@ html.calm *,html.calm *::before,html.calm *::after{animation:none!important;tran
 <section class="contact-page" id="contactPage" role="dialog" aria-modal="true" aria-labelledby="contactTitle" hidden>
   <div class="contact-card px">
     <div class="lab">player 1 // contact</div>
-    <h2 id="contactTitle">let's connect!</h2>
-    <p>I'd love to hear from you.</p>
+    <h2 id="contactTitle">Let’s connect</h2>
+    <p>I’d be pleased to hear from you.</p>
     <div class="contact-links">
       <a href="mailto:yixuanchen.1011@gmail.com">email: yixuanchen.1011@gmail.com</a>
       <a href="https://www.linkedin.com/in/yi-xuan-chen-zhang" target="_blank" rel="noopener noreferrer">linkedin: yi-xuan-chen-zhang</a>
       <a href="https://github.com/cyxcyxwastaken" target="_blank" rel="noopener noreferrer">github: cyxcyxwastaken</a>
     </div>
-    <button type="button" class="btn contact-back" id="contactBack">back to constellation</button>
+    <button type="button" class="btn contact-back" id="contactBack">Return to my portfolio</button>
   </div>
 </section>
 
