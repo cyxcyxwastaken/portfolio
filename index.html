@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
 <title>Yi Xuan Chen Zhang</title>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Lexend:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Press+Start+2P&family=VT323&family=Lexend:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#06030C;--panel:#0D0818;--ink:#F6ECF2;--muted:#B7A3B0;--pink:#FF8FC0;--lilac:#C9B1FF;--gold:#FFE066;
   --px:'Press Start 2P','Courier New',monospace;--vt:'VT323','Courier New',monospace}
@@ -108,8 +108,8 @@ h1{font-family:var(--px);font-weight:400;font-size:clamp(.8rem,2.6vw,1.2rem);lin
 .appearance-panel [aria-checked="true"] .swatch{background:var(--pink);box-shadow:inset 0 0 0 3px var(--panel)}
 .appearance-panel .on{margin-left:auto;color:var(--muted)}
 /* refined editorial appearance */
-html.elegant{--bg:#F5F2EC;--panel:#FFFEFB;--ink:#292824;--muted:#77736B;--pink:#A76D62;--lilac:#738477;--gold:#9A7950;--px:'Lexend',Arial,sans-serif;--vt:'Lexend',Arial,sans-serif}
-html.elegant body{font-size:1rem;line-height:1.55;background-image:radial-gradient(50rem 35rem at 100% 0%,rgba(167,109,98,.09),transparent 72%);}
+html.elegant{--bg:#F5F2EC;--panel:#FFFEFB;--ink:#292824;--muted:#77736B;--pink:#A76D62;--lilac:#738477;--gold:#9A7950;--px:'Cormorant Garamond',Georgia,serif;--vt:'Cormorant Garamond',Georgia,serif}
+html.elegant body{font-size:1.12rem;line-height:1.45;background-image:radial-gradient(50rem 35rem at 100% 0%,rgba(167,109,98,.09),transparent 72%);}
 html.elegant .page{gap:1.35rem;padding:calc(env(safe-area-inset-top,0px) + 1.5rem) 1.5rem calc(env(safe-area-inset-bottom,0px) + 1.5rem)}
 html.elegant .main{flex:1 0 auto;min-height:24rem}
 html.elegant .foot{flex:0 0 auto;margin-top:.35rem;padding-top:1rem;border-top:1px solid rgba(90,78,61,.15);gap:1rem 1.5rem}
@@ -120,6 +120,7 @@ html.elegant .lab,html.elegant .q h2,html.elegant .t,html.elegant .btn,html.eleg
 html.elegant h1{font-family:var(--px);font-size:clamp(1.2rem,3vw,1.8rem);line-height:1.25;letter-spacing:-.04em}
 html.elegant .hud{padding:1.2rem 1.4rem}
 html.elegant .hud .settings .btn{padding:.55rem .75rem;font-size:.58rem}
+html.elegant .lab,html.elegant .q h2,html.elegant .t,html.elegant .btn,html.elegant .ap h2,html.elegant .appearance-panel h2{font-weight:600;letter-spacing:.09em}
 html.elegant .main{gap:1.5rem}
 html.elegant .q{padding:1.2rem 1.4rem}
 html.elegant .q h2{color:var(--gold)}
@@ -149,7 +150,16 @@ html.elegant .contact-card h2{font-family:var(--px);color:var(--gold)}
 html.elegant .contact-links a{color:var(--lilac)}
 html.elegant #load{background:var(--bg)}
 html.elegant #load .bar i{background:#e5e0d7}
-html.elegant #load b{font-family:var(--px);color:var(--pink)}
+html.elegant #load b{font-family:var(--px);font-weight:500;color:var(--ink);animation:none}
+html.elegant #load .bar{width:10rem;height:2px;gap:2px;background:#e5e0d7}
+html.elegant #load .bar i{flex:1;width:auto;height:2px;animation:none;background:var(--pink);box-shadow:none}
+html.elegant .arcade-loading,html.elegant .arcade-ready{display:none}
+html.elegant .editorial-loading,html.elegant .editorial-ready{display:inline}
+html.elegant .toast{left:50%;right:auto;top:calc(env(safe-area-inset-top,0px) + 1rem);width:min(24rem,calc(100vw - 2rem));max-width:none;padding:1rem 1.25rem 1rem 3.25rem;border:1px solid rgba(90,78,61,.16);border-radius:12px;background:var(--panel);transform:translate(-50%,-150%);transition:transform .35s ease;box-shadow:0 12px 36px rgba(54,46,35,.12)}
+html.elegant .toast::before{content:"✦";position:absolute;left:1.2rem;top:50%;transform:translateY(-50%);font-size:1.25rem;color:var(--gold)}
+html.elegant .toast.show{transform:translate(-50%,0)}
+html.elegant .toast .lab{font-family:var(--px);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase}
+html.elegant .toast p{font-family:var(--px);font-size:1.1rem;color:var(--ink)}
 /* accessibility modes */
 html.dys{--px:'Lexend',Verdana,sans-serif;--vt:'Lexend',Verdana,sans-serif}
 html.dys body{font-size:1.05rem;line-height:1.7;letter-spacing:.03em;word-spacing:.1em}
@@ -225,14 +235,12 @@ html.calm *,html.calm *::before,html.calm *::after{animation:none!important;tran
 .dot.down svg{transform:scale(.8)}
 .dot.big.down svg{animation:none;transform:scale(.9)}
 @keyframes wob{50%{transform:scale(1.1) rotate(-4deg)}}
-.pp{position:fixed;width:6px;height:6px;background:var(--gold);pointer-events:none;z-index:390;animation:pp .5s steps(5) forwards}
-@keyframes pp{to{transform:translate(var(--x),var(--y));opacity:0}}
 .fine,.fine *{cursor:none}
 @media (prefers-reduced-motion:reduce){.star::before,.star.now::after,.txt::after,#load b,.shoot{animation:none}.toast{transition:none}}
 </style>
 </head>
 <body>
-<div id="load" aria-hidden="true"><b>loading...</b><div class="bar"><i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i><i style="--k:6"></i><i style="--k:7"></i><i style="--k:8"></i><i style="--k:9"></i></div><small>player 1 ready</small></div>
+<div id="load" aria-hidden="true"><b><span class="arcade-loading">loading...</span><span class="editorial-loading" hidden>Preparing your portfolio</span></b><div class="bar"><i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i><i style="--k:6"></i><i style="--k:7"></i><i style="--k:8"></i><i style="--k:9"></i></div><small><span class="arcade-ready">player 1 ready</span><span class="editorial-ready" hidden>Welcome</span></small></div>
 <div class="toast px" id="toast" role="status"><div class="lab">achievement unlocked</div><p>scorpio constellation</p></div>
 
 <div class="page">
@@ -361,7 +369,7 @@ html.calm *,html.calm *::before,html.calm *::after{animation:none!important;tran
   // appearance settings
   var appearanceBtn=document.getElementById('appearanceBtn'),appearancePanel=document.getElementById('appearancePanel'),appearanceChoices=[].slice.call(appearancePanel.querySelectorAll('[role=radio]'));
   var appearance='arcade';try{appearance=localStorage.getItem('appearance')==='elegant'?'elegant':'arcade'}catch(e){}
-  function setAppearance(mode){var elegant=mode==='elegant';root.classList.toggle('elegant',elegant);appearanceChoices.forEach(function(b){var selected=b.dataset.appearance===mode;b.setAttribute('aria-checked',selected);b.querySelector('.on').textContent=selected?'selected':''})}
+  function setAppearance(mode){var elegant=mode==='elegant';root.classList.toggle('elegant',elegant);document.querySelector('#toast .lab').textContent=elegant?'A little discovery':'achievement unlocked';appearanceChoices.forEach(function(b){var selected=b.dataset.appearance===mode;b.setAttribute('aria-checked',selected);b.querySelector('.on').textContent=selected?'selected':''})}
   setAppearance(appearance);
   function openAppearance(o){appearancePanel.hidden=!o;appearanceBtn.setAttribute('aria-expanded',o);if(o)appearanceChoices[0].focus();else appearanceBtn.focus()}
   appearanceBtn.addEventListener('click',function(){openAppearance(appearancePanel.hidden)});
@@ -380,13 +388,7 @@ html.calm *,html.calm *::before,html.calm *::after{animation:none!important;tran
     document.documentElement.classList.add('fine');
     var mx=0,my=0,gx=0,gy=0,k=.4;
     addEventListener('pointermove',function(e){mx=e.clientX;my=e.clientY;d.classList.add('on');d.classList.toggle('big',!!e.target.closest('a,button'))});
-    addEventListener('pointerdown',function(e){
-      d.classList.add('down');if(reduce)return;
-      for(var i=0;i<7;i++){var p=document.createElement('span'),an=Math.random()*6.28,r=14+Math.random()*22;
-        p.className='pp';p.style.left=e.clientX+'px';p.style.top=e.clientY+'px';
-        p.style.setProperty('--x',Math.cos(an)*r+'px');p.style.setProperty('--y',Math.sin(an)*r+'px');
-        document.body.appendChild(p);setTimeout(function(x){x.remove()},520,p)}
-    });
+    addEventListener('pointerdown',function(){d.classList.add('down')});
     addEventListener('pointerup',function(){d.classList.remove('down')});
     document.documentElement.addEventListener('mouseleave',function(){d.classList.remove('on')});
     (function loop(){var kk=reduce?1:k;gx+=(mx-gx)*kk;gy+=(my-gy)*kk;d.style.transform='translate('+gx+'px,'+gy+'px)';requestAnimationFrame(loop)})();
@@ -440,7 +442,7 @@ html.calm *,html.calm *::before,html.calm *::after{animation:none!important;tran
   }
   function hud(){var n=stars.filter(function(x){return x.classList.contains('lit')}).length;cnt.textContent=n;[].forEach.call(xp.children,function(c,i){c.classList.toggle('on',i<n)});return n}
   function burst(){
-    if(reduce)return;
+    if(reduce||root.classList.contains('elegant'))return;
     for(var i=0;i<22;i++){var e=document.createElement('span'),an=Math.random()*6.28,r=120+Math.random()*180;
       e.className='burst';e.textContent='✦';e.style.setProperty('--x',Math.cos(an)*r+'px');e.style.setProperty('--y',Math.sin(an)*r+'px');
       e.style.fontSize=(10+Math.random()*16)+'px';document.body.appendChild(e);setTimeout(function(x){x.remove()},1500,e)}
